@@ -1,4 +1,4 @@
-#pwn1
+# pwn1
 
 This is the first problem in the pwn section of the TAMU 2018 CTF competition.  In the pwn section the solution usually involves exploiting a vulnerability in the binary to find the flag.  So to start this problem lets open the binary up in IDAPro and take a look to see if we can find anything useful.
 
