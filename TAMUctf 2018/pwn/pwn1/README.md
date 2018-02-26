@@ -16,9 +16,7 @@ Then it will prompt us for the 'secret'.  We want to give it a substantial amou
 
 AAAABBBBCCCCDDDDEEEEFFFFGGGGHHHHIIIIJJJJKKKKLLLLMMMMOOOOPPPP
 
-That will probably be more than enough considering we can see in the disassembly that the location of the string is 23 bytes from the EBP.
-
-Now lets examine the stack.
+That will probably be more than enough. Now lets examine the stack.
 
 ![gdb](http://killyp.com/wp-content/uploads/2018/02/Capture-2.jpg)
 
