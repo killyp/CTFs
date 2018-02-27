@@ -23,7 +23,7 @@ That will probably be more than enough. Now lets examine the stack.
 The x/32x $ESP command will print out the $ESP register followed by $ESP+4, then $ESP+8, then $ESP+12, etc.  Then I do a x/x $EBP command to see where the $EBP is pointing and as you can see the saved $EBP from the last stack frame has been overwritten with "IJJJ". We also know that the variable, var_0C, is being stored at $EBP - 0Ch.  To overwrite the variable, var_0Ch, we need to find the distance from where our text starts being stored to where Var_0C is on the stack.  We know that Var_0C is $EBP - 0x0C so the location of Var_0C is (0xffffcf08 - 0x0C).  So the address that we need to be equal to 0xF007BA11 is located at 0xffffcefc. We can also see in the image above that our text is getting saved on the stack starting at address 0xffffcee5.  The distance from this address to the address of Var_0Ch is then 0x17 which is 23 in decimal.  So let's put 23 A's into stdin and then the text we need there, which is 0xF007BA11.  Remember that x86 is Little Endian so it will need to go into stdin as 0x11 0xBA 0x07 0xF0.  These characters cannot be represented with ASCII so we will use python to help us with piping in the binary.
 
 ```bash
-python -c 'print("A"*17 + "\x11\xBA\x07\xF0")' | ./pwn1
+python -c 'print("A"*17 + "\x11\xBA\x07\xF0")' | nc pwn.ctf.tamu.edu 4321
 ```
 Which yields the result...
 
