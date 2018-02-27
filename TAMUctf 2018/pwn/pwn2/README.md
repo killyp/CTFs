@@ -1,7 +1,7 @@
 # pwn2
 ---
 
-As with most exploit challenges, let's copy the binary to a Linux system and take a look!  Once in Linux, we will check the security implementations of the file using checksec with gdb-peda.  The, we will run the file and strings command on the binary to see if we can get any hints.
+As with most exploit challenges, let's copy the binary to a Linux system and take a look!  Once in Linux, we will check the security implementations of the file using checksec with gdb-peda.  Then, we will run the file and strings command on the binary to see if we can get any hints.
 
 ```bash
 gdb-peda$ checksec
