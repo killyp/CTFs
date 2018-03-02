@@ -94,7 +94,7 @@ To build our exploit we will use the python library, pwntools.  This library 
 
 Our python exploit then ends up looking like this:
 
-[python]
+```python
 #!/usr/bin/env python
 import pwn
 import time
@@ -159,6 +159,6 @@ if __name__ == "__main__":
     else:
         setup()
 
-[/python]
+```
 So let's run it!
 ![exploit](https://killyp.com/wp-content/uploads/2018/03/Capture-2.jpg)
